@@ -63,7 +63,7 @@ module railHolderMainBody() {
         
         // 0 deg. line
         translate([-6, -1.5, 0])
-            cube([0.25, 0.25, 40], center=true);
+            cube([0.5, 0.5, 40], center=true);
         
         for (z = [-22, 22])
             translate([-4.5, -1, z])
@@ -73,7 +73,7 @@ module railHolderMainBody() {
         for (y = [5, -5])
             translate([-6, -1.5, 0])
             rotate([0, y, 0])
-                cube([0.25, 0.25, 50], center=true);
+                cube([0.5, 0.5, 50], center=true);
         
         for (z = [-20, 20])
             translate([-9, -1, z])
@@ -83,7 +83,7 @@ module railHolderMainBody() {
         for (y = [20, -20])
             translate([-6, -1.5, 0])
             rotate([0, y, 0])
-                cube([0.25, 0.25, 60], center=true);
+                cube([0.5, 0.5, 60], center=true);
         
         translate([-13, -1, -17])
             rotate([0, 20, 0])
@@ -94,14 +94,16 @@ module railHolderMainBody() {
     }
 }
 
-// rotate([90, 0, 0]) // for slic3r only!
+screw_r = 2;
+
+rotate([0, 90, 0]) // for slic3r only!
 difference() {
     railHolderMainBody();
     
     // Sroub proti kolejnici
     translate([-14, 3.5, 0])
         rotate(a = [0,90,0])
-        cylinder(h = 8, r1 = 1.5, r2 = 1.5, center = true);
+        cylinder(h = 8, r1 = screw_r, r2 = screw_r, center = true);
     
     // Dira, ve ktere se otaci vrsek
     translate([2.5, -16, 0])
@@ -109,9 +111,13 @@ difference() {
         cylinder(h=18, r1=4.25, r2=4.25, center = true);
 
     // Sroub proti otocnemu vrsku
-    translate([0, -18, 0])
+    translate([0, -15, 0])
         rotate(a = [0, 90, 0])
-        cylinder(h=37, r1=1.5, r2=1.5, center = true);
-    // TODO: prohluben pro sroub na strane, kde to ma dal
+        cylinder(h=37, r1=screw_r, r2=screw_r, center = true);
+    // prohluben pro sroub na strane, kde to ma dal
+    translate([-16, -15, 0])
+    rotate([0, 90, 0])
+    cylinder(h=3, r1=5, r2=5, center = true);
 }
+
 
