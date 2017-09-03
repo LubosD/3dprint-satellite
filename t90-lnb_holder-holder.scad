@@ -16,10 +16,12 @@ module t90_pin() {
         translate([-2.5, -6, 10])
             cube([5, 12, 8], center=false);
 
+        /*
         translate([-2.5, -4, 7])
             cube([1, 8, 3], center=false);
         translate([1.5, -4, 7])
             cube([1, 8, 3], center=false);
+        */
     }
 }
 
@@ -27,14 +29,14 @@ module t90_top() {
     difference() {
         union() {
             // main body
-            cylinder(h=15, r1=29, r2=29, $fn=40);
+            cylinder(h=15, r1=29, r2=29, $fn=80);
             
             // where the screw is
             translate([-5, -29-6, 0])
                 cube([5, 15, 15]);
         };
         
-        cylinder(h=15, r1=39/2, r2=39/2, $fn=40);
+        cylinder(h=15, r1=40/2, r2=40/2, $fn=80);
         translate([0, -29, 0])
             cube([29, 29*2, 15]);
         
@@ -53,15 +55,15 @@ module t90_top() {
     difference() {
         //translate([-4, 25, 3])
         //    cube([10, 7, 8]);
-        translate([2.5, 28, 3])
-            cylinder(h=8, r1=3, r2=3);
+        translate([2.5, 28, 2.5])
+            cylinder(h=10, r1=3, r2=3);
         
-        translate([2.5, 28, 3])
-            cylinder(h=8, r1=1.55, r2=1.55);
+        translate([2.5, 28, 2.5])
+            cylinder(h=10, r1=1.55, r2=1.55);
         
-        translate([2.5, 29, 3])
+        translate([2.5, 29, 2.5])
             rotate([0, 0, -130])
-            Triangle(5, 5, angle=70, height=8);
+            Triangle(5, 5, angle=70, height=10);
         
     };
     
@@ -78,13 +80,19 @@ module t90_bottom() {
     difference() {
         cube([37, 49, 15]);
         translate([0, 49/2, 0])
-        cylinder(h=15, r1=39/2, r2=39/2, $fn = 40);
+        cylinder(h=15, r1=39/2, r2=39/2, $fn = 80);
 
+        // label
+        translate([29, 49/2, 14])
+            rotate([0, 0, 90])
+            linear_extrude(height=1)
+                    text(text="T90", size=3, halign="center");
     }
 
     // Pin attaching the main body to the slider
     translate([37+3, 49/2, 15/2])
         rotate([0, 68.199, 0])
+        rotate([0, 0, 90])
         t90_pin();
 
     // screw hole
@@ -93,6 +101,7 @@ module t90_bottom() {
             translate([0, -10, 0])
                 cube([10, 10, 15]);
             
+            /*
             translate([10, 0, 15])
                 rotate([180,0,0])
                 Triangle(10, 10, angle=90, height=3);
@@ -100,6 +109,7 @@ module t90_bottom() {
             translate([10, 0, 3])
                 rotate([180,0,0])
                 Triangle(10, 10, angle=90, height=3);
+            */
         };
             
         rotate([0, 90, 0])

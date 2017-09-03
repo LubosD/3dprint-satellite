@@ -96,7 +96,6 @@ module railHolderMainBody() {
 
 screw_r = 2;
 
-rotate([0, 90, 0]) // for slic3r only!
 difference() {
     railHolderMainBody();
     
