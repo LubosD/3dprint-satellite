@@ -90,7 +90,7 @@ module t90_bottom() {
     difference() {
         cube([37, 49, 15]);
         translate([0, 49/2, 0])
-        cylinder(h=15, r1=39/2, r2=39/2, $fn = 80);
+        cylinder(h=15, r1=40/2, r2=40/2, $fn = 80);
 
         // label
         translate([29, 49/2, 14])

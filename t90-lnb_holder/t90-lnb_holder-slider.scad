@@ -49,8 +49,8 @@ module railHolderMainBody() {
             translate([0, -6]) roundedRect([15, 8], 1);
             
             // Right side of the rail
-            translate([7, 5.5]) roundedRect([5, 15.5], 1);
-            translate([7, 13]) square([3, 4]);
+            translate([7, 5.5]) roundedRect([6, 15.5], 1);
+            translate([7+0.5, 13]) square([3, 4]);
             
             // Left side of the rail
             translate([-7, 5.5]) roundedRect([6, 15.5], 1);
