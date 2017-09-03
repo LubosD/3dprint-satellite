@@ -33,16 +33,16 @@ module railHolderMainBody() {
     linear_extrude(height = 19, center=true)
         difference() {
             square([35, 45], true);
-            // Hlavni prurez
+            // Main etch
             translate([-6, -8]) square([12, 32]);
-            // Nahore je sirsi a kulaty
+            // Wider top
             translate([0, -6]) roundedRect([15, 8], 1);
-            // Kolej prava
-            // 5 mm hloubka, 16mm vejska
+            
+            // Right side of the rail
             translate([7, 6]) roundedRect([5, 16], 1);
             translate([7, 13]) square([3, 4]);
             
-            // Kolej leva
+            // Left side of the rail
             translate([-7, 6]) roundedRect([6, 16], 1);
             translate([-7-3.5, 13]) square([3, 4]);
         };
@@ -96,24 +96,26 @@ module railHolderMainBody() {
 
 screw_r = 2;
 
+rotate([90, 0, 0])
 difference() {
     railHolderMainBody();
     
-    // Sroub proti kolejnici
+    // Screw against the rail
     translate([-14, 3.5, 0])
         rotate(a = [0,90,0])
         cylinder(h = 8, r1 = screw_r, r2 = screw_r, center = true);
     
-    // Dira, ve ktere se otaci vrsek
+    // Hole where the holder part turns
     translate([2.5, -16, 0])
         rotate(a = [90,0,0])
         cylinder(h=18, r1=4.25, r2=4.25, center = true);
 
-    // Sroub proti otocnemu vrsku
+    // Screw against holder part's pin
     translate([0, -15, 0])
         rotate(a = [0, 90, 0])
         cylinder(h=37, r1=screw_r, r2=screw_r, center = true);
-    // prohluben pro sroub na strane, kde to ma dal
+    
+    // Dent in the surface for the screw on one of the sides
     translate([-16, -15, 0])
     rotate([0, 90, 0])
     cylinder(h=3, r1=5, r2=5, center = true);
