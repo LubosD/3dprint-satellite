@@ -1,3 +1,13 @@
+/*
+T90 LNB holder (c) by Lubos Dolezel
+
+T90 LNB holder is licensed under a
+Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License.
+
+You should have received a copy of the license along with this
+work. If not, see <http://creativecommons.org/licenses/by-nc-sa/4.0/>.
+*/
+
 use <Triangles.scad>;
 
 // May need to be increased to 2.5 for soft filaments
