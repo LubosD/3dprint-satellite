@@ -42,7 +42,7 @@ module t90_top() {
             cylinder(h=15, r1=29, r2=29, $fn=80);
             
             // where the screw is
-            translate([-5, -29-6, 0])
+            translate([-5, -29-5.5, 0])
                 cube([5, 15, 15]);
         };
         
