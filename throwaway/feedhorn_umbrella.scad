@@ -33,9 +33,10 @@ module everything() {
             cylinder(h=10, r1=rtop+thickness, r2=rtop+thickness, center=true);
             
             cube([(rtop+thickness)*2+24, 5, 10], center=true);
-            // TODO: kill need for supports
-            //translate([-rtop*2,  0, -2.5]);
-            //cube([5, 5, 2.5]);
+            // kill need for supports
+            for (j = [-1, 1])
+                translate([j*(rtop+11),  0, -5])
+                    cube([5, 5, 5], center=true);
         };
         cylinder(h=20, r1=rtop, r2=rtop, center=true);
         
