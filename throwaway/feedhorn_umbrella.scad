@@ -1,8 +1,16 @@
 $fn=100;
-angle=68;
-thickness=1.5;
+angle=70;
+thickness=2.5;
 rtop=29;
-w = 119;
+w = 117;
+
+module triangle(o_len, a_len, depth)
+{
+    linear_extrude(height=depth)
+    {
+        polygon(points=[[0,0],[a_len,0],[0,o_len]], paths=[[0,1,2]]);
+    }
+}
 
 function cyl_height(top_r, bottom_r) = tan(90-angle) * (bottom_r - top_r);
 
@@ -12,8 +20,8 @@ module cover(top_r, bottom_r) {
     cylinder(h=height, r2=top_r, r1=bottom_r, center=true, $fn=200);
 }
 
+hh = cyl_height(rtop, w);
 module everything() {
-    hh = cyl_height(rtop, w);
     
     translate([0, 0, hh/2])
     difference() {
@@ -24,7 +32,7 @@ module everything() {
             //translate([0, 0, -hh/2 + 2.5])
             //    cube([(w+thickness)*2, 5, 5], center=true);
         }
-        cover(29, w);
+        //cover(29, w);
     };
 
     translate([0, 0, hh+5])
@@ -66,12 +74,19 @@ difference() {
         cube([300, 300, 300]);
 
     for(i = [-1, 1])
-        translate([i*(w-1),0,1.5])
-        cube([2.5, 10, 1], center=true);
+        translate([i*(w),0.85,1.6])
+        rotate([0,i*21,0])
+        cube([3, 10, 2], center=true);
 
+    translate([0, 0, hh/2])
+    cover(29, w);
 }
 
-
+// extra fake support to prevent warping along the inner edge
+for (i = [-1,1])
+translate([-i*rtop,-0.5,0])
+rotate([0, -90, i*90])
+triangle(w-rtop, cyl_height(rtop, w), 0.5);
 
 module slant_edge(width) {
     w = width - rtop;
@@ -81,4 +96,3 @@ module slant_edge(width) {
     
     cube([len, 5, 3]);
 }
-
