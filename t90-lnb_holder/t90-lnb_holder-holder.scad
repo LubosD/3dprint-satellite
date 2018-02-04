@@ -14,25 +14,34 @@ use <Triangles.scad>;
 screw_r = 2;
 $fn = 20;
 
+
 module t90_pin() {
     difference() {
         union() {
-            cylinder(h=13, r1=3.9, r2=3.9, center=false);
-            translate([0, 0, 16])
+            cylinder(h=14, r1=3.9, r2=3.9, center=false);
+            translate([0, 0, 16.3])
             rotate([180,0,0])
-                    linear_extrude(height=3, center=false, scale=[1.25,0.9])
+                    linear_extrude(height=3, center=false, scale=[1.40,0.95])
                         circle(r=3.9);
         }
+        
+            translate([-2.4,-5,17])
+rotate([90,180,180])
+Triangle(8, 2.5, angle=90, height=10);
+    
+    translate([2.4,5,17])
+rotate([90,180,0])
+Triangle(8, 2.5, angle=90, height=10);
+        
+        /*
         translate([-2.5, -6, 10])
             cube([5, 12, 8], center=false);
-
-        /*
-        translate([-2.5, -4, 7])
-            cube([1, 8, 3], center=false);
-        translate([1.5, -4, 7])
-            cube([1, 8, 3], center=false);
         */
+
     }
+    
+
+
 }
 
 module t90_top() {
@@ -111,6 +120,9 @@ module t90_bottom() {
             translate([0, -10, 0])
                 cube([10, 10, 15]);
             
+            translate([5, -8, 0])
+            cylinder(r1=5, r2=5, h=15);
+            
             /*
             translate([10, 0, 15])
                 rotate([180,0,0])
@@ -138,7 +150,7 @@ module t90_bottom() {
     }
 }
 
-translate([-10, 29-4.5, 0])
-    t90_top();
+/*translate([-10, 29-4.5, 0])
+    t90_top();*/
 
 t90_bottom();
