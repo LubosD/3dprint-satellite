@@ -15,6 +15,14 @@ module hexagon(size, height) {
   for (r = [-60, 0, 60]) rotate([0,0,r]) cube([boxWidth, size, height], true);
 }
 
+module cylinder_mid(height,radius,fn){
+   fudge = (1+1/cos(180/fn))/2;
+   cylinder(h=height,r=radius*fudge,$fn=fn);}
+   
+   module cylinder_outer(height,radius,fn){
+   fudge = 1/cos(180/fn);
+   cylinder(h=height,r=radius*fudge,$fn=fn);}
+
 module mainTube() {
     difference() {
         union() {
@@ -147,7 +155,8 @@ module wholeBody() {
         
         // hollow inside
         rotate([0, 90, 0])
-            cylinder(h=77, r1=25/2, r2=25/2);
+            //cylinder(h=77, r1=25/2, r2=25/2);
+            cylinder_outer(77, 25/2, 80);
     }
 }
 
@@ -159,6 +168,7 @@ difference() {
     translate([-80,0,-20])
         cube([200, 74, 150]);
 };
+
 
 // second half
 rotate([90,0,0])
